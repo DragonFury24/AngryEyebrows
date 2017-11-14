@@ -15,6 +15,8 @@ public class Paint {
      */
     private int slope;
     private int yIntercept;
+    private int tangentSlope;
+    private int tangentYIntercept;
 
     public Paint(Picture p) {
         picture = p;
@@ -27,6 +29,8 @@ public class Paint {
     public void drawLine(int startX, int startY, int endX, int endY) {
         slope = (endY - startY) / (endX - startX);
         yIntercept = startY - (startX * slope);
+        tangentSlope = -1 / slope;
+        tangentYIntercept = startY - (startX * tangentSlope);
 
         for (int x = startX; x < endX; x++) {
             for (int y = getLinearY(x); y < getLinearY(x) + getStrokeWidth(); y++) {
@@ -43,6 +47,13 @@ public class Paint {
 
     }
 
+    public void drawRect(int left, int top, int right, int bottom) {
+        for (int row = top; row <= bottom; row++) {
+            for (int col = left; col <= right; col++) {
+                picture.getPixel(row, col).setColor(color);
+            }
+        }
+    }
     public int getTextSize() {
         return textSize;
     }
@@ -71,8 +82,16 @@ public class Paint {
         textSize = tS;
     }
 
+//    private int getXFromDistance() {
+//        return Math.sqrt()
+//    }
+
     private int getLinearY(int x) {
         return x * slope + yIntercept;
+    }
+
+    private int getTangentY(int x) {
+        return x * tangentSlope + tangentYIntercept;
     }
 
     private int getCircularY(int x, int radius, String sign) {
@@ -80,9 +99,5 @@ public class Paint {
 
         return sign.toLowerCase().startsWith("pos") ? y :
                 sign.toLowerCase().startsWith("neg") ? -y : -1;
-    }
-
-    private int getPurpendicularY() {
-        return 0;
     }
 }
