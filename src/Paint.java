@@ -18,8 +18,13 @@ public class Paint {
     private int tangentSlope;
     private int tangentYIntercept;
 
+    private String style;
+    public final String STROKE = "STROKE";
+    public final String FILL = "FILL";
+
     public Paint(Picture p) {
         picture = p;
+        style = this.FILL;
     }
 
     public void drawCircle(int centerX, int centerY, int radius) {
@@ -32,11 +37,11 @@ public class Paint {
         tangentSlope = -1 / slope;
         tangentYIntercept = startY - (startX * tangentSlope);
 
-        for (int x = startX; x < endX; x++) {
-            for (int y = getLinearY(x); y < getLinearY(x) + getStrokeWidth(); y++) {
-                picture.getPixel(x, y).setColor(color);
-            }
-        }
+        if (style.equals(this.FILL))
+            for (int x = startX; x < endX; x++)
+                for (int y = getLinearY(x); y < getLinearY(x) + getStrokeWidth(); y++)
+                    picture.getPixel(x, y).setColor(color);
+        else if (style.equals(this.STROKE));
     }
 
     public void drawOval(int left, int top, int right, int bottom) {
@@ -48,12 +53,13 @@ public class Paint {
     }
 
     public void drawRect(int left, int top, int right, int bottom) {
-        for (int row = top; row <= bottom; row++) {
-            for (int col = left; col <= right; col++) {
-                picture.getPixel(row, col).setColor(color);
-            }
-        }
+        if (style.equals(this.FILL))
+            for (int row = top; row <= bottom; row++)
+                for (int col = left; col <= right; col++)
+                    picture.getPixel(row, col).setColor(color);
+        else if (style.equals(this.STROKE)) ;
     }
+
     public int getTextSize() {
         return textSize;
     }
@@ -78,6 +84,10 @@ public class Paint {
         strokeWidth = sW;
     }
 
+    public void setStyle(String s) {
+        style = s;
+    }
+
     public void setTextSize(int tS) {
         textSize = tS;
     }
@@ -87,8 +97,9 @@ public class Paint {
 //    }
 
     private int getDistance(int x1, int y1, int x2, int y2) {
-        return (int)Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        return (int) Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
+
     private int getLinearY(int x) {
         return x * slope + yIntercept;
     }
@@ -98,7 +109,7 @@ public class Paint {
     }
 
     private int getCircularY(int x, int radius, String sign) {
-        int y = (int)Math.sqrt(Math.pow(radius, 2) - Math.pow(x, 2));
+        int y = (int) Math.sqrt(Math.pow(radius, 2) - Math.pow(x, 2));
 
         return sign.toLowerCase().startsWith("pos") ? y :
                 sign.toLowerCase().startsWith("neg") ? -y : -1;

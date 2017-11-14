@@ -27,10 +27,14 @@
       <file leaf-file-name="Paint.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Paint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="89" column="20" lean-forward="false" selection-start-line="89" selection-start-column="20" selection-end-line="89" selection-end-column="20" />
+            <state relative-caret-position="323">
+              <caret line="43" column="44" lean-forward="false" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2186#2187#0" expanded="true" />
+                <element signature="e#2211#2212#0" expanded="true" />
+                <element signature="method#getDistance#0;class#Paint#0" expanded="false" />
+                <element signature="method#getCircularY#0;class#Paint#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -287,14 +291,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Paint.java</url>
-          <line>34</line>
-          <properties />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
@@ -314,6 +310,10 @@
           <caret line="73" column="35" lean-forward="false" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2186#2187#0" expanded="true" />
+            <element signature="e#2211#2212#0" expanded="true" />
+            <element signature="method#getDistance#0;class#Paint#0" expanded="false" />
+            <element signature="method#getCircularY#0;class#Paint#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -332,6 +332,10 @@
           <caret line="35" column="5" lean-forward="false" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2186#2187#0" expanded="true" />
+            <element signature="e#2211#2212#0" expanded="true" />
+            <element signature="method#getDistance#0;class#Paint#0" expanded="false" />
+            <element signature="method#getCircularY#0;class#Paint#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -426,6 +430,10 @@
           <caret line="28" column="1" lean-forward="false" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2186#2187#0" expanded="true" />
+            <element signature="e#2211#2212#0" expanded="true" />
+            <element signature="method#getDistance#0;class#Paint#0" expanded="false" />
+            <element signature="method#getCircularY#0;class#Paint#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -620,10 +628,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Paint.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="89" column="20" lean-forward="false" selection-start-line="89" selection-start-column="20" selection-end-line="89" selection-end-column="20" />
+        <state relative-caret-position="323">
+          <caret line="43" column="44" lean-forward="false" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2186#2187#0" expanded="true" />
+            <element signature="e#2211#2212#0" expanded="true" />
+            <element signature="method#getDistance#0;class#Paint#0" expanded="false" />
+            <element signature="method#getCircularY#0;class#Paint#0" expanded="false" />
           </folding>
         </state>
       </provider>
