@@ -19,21 +19,15 @@ public class Paint {
     private int tangentYIntercept;
 
     public enum Style {
-        FILL(0),
-        STROKE(1),
-        FILL_AND_STROKE(2);
-
-        Style(int nativeInt) {
-            this.nativeInt = nativeInt;
-        }
-        final int nativeInt;
+        FILL,
+        STROKE,
+        FILL_AND_STROKE
         }
 
-    private Paint.Style style;
+    private Paint.Style style = Style.FILL;
 
     public Paint(Picture p) {
         picture = p;
-        style = Style.FILL;
     }
 
     public void drawCircle(int centerX, int centerY, int radius) {
