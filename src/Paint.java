@@ -18,13 +18,22 @@ public class Paint {
     private int tangentSlope;
     private int tangentYIntercept;
 
-    private String style;
-    public final String STROKE = "STROKE";
-    public final String FILL = "FILL";
+    public enum Style {
+        FILL(0),
+        STROKE(1),
+        FILL_AND_STROKE(2);
+
+        Style(int nativeInt) {
+            this.nativeInt = nativeInt;
+        }
+        final int nativeInt;
+        }
+
+    private Paint.Style style;
 
     public Paint(Picture p) {
         picture = p;
-        style = this.FILL;
+        style = Style.FILL;
     }
 
     public void drawCircle(int centerX, int centerY, int radius) {
@@ -37,11 +46,12 @@ public class Paint {
         tangentSlope = -1 / slope;
         tangentYIntercept = startY - (startX * tangentSlope);
 
-        if (style.equals(this.FILL))
+        if (style.equals(Style.FILL)) //Draw a filled in line starting and stopping at specified coordinates
             for (int x = startX; x < endX; x++)
                 for (int y = getLinearY(x); y < getLinearY(x) + getStrokeWidth(); y++)
                     picture.getPixel(x, y).setColor(color);
-        else if (style.equals(this.STROKE));
+        else if (style.equals(Style.STROKE)) ;
+        else if (style.equals(Style.FILL_AND_STROKE)) ;
     }
 
     public void drawOval(int left, int top, int right, int bottom) {
@@ -53,11 +63,11 @@ public class Paint {
     }
 
     public void drawRect(int left, int top, int right, int bottom) {
-        if (style.equals(this.FILL))
+        if (style.equals(Style.FILL))
             for (int row = top; row <= bottom; row++)
                 for (int col = left; col <= right; col++)
                     picture.getPixel(row, col).setColor(color);
-        else if (style.equals(this.STROKE)) ;
+        else if (style.equals(Style.STROKE)) ;
     }
 
     public int getTextSize() {
@@ -84,7 +94,7 @@ public class Paint {
         strokeWidth = sW;
     }
 
-    public void setStyle(String s) {
+    public void setStyle(Paint.Style s) {
         style = s;
     }
 
