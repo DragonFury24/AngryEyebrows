@@ -22,7 +22,7 @@ public class Paint {
         FILL,
         STROKE,
         FILL_AND_STROKE
-        }
+    }
 
     private Paint.Style style = Style.FILL;
 
@@ -32,6 +32,14 @@ public class Paint {
 
     public void drawCircle(int centerX, int centerY, int radius) {
 
+    }
+
+    public void drawColor(Color c) {
+        for (int row = 0; row <= picture.getHeight(); row++) {
+            for (int col = 0; col <= picture.getWidth(); col++) {
+                picture.getPixel(row, col).setColor(c);
+            }
+        }
     }
 
     public void drawLine(int startX, int startY, int endX, int endY) {
