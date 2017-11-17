@@ -47,10 +47,17 @@ public class Paint {
         tangentSlope = -1 / slope;
         tangentYIntercept = startY - (startX * tangentSlope);
 
-        if (style.equals(Style.FILL)) //Draw a filled in line starting and stopping at specified coordinates
-            for (int x = startX; x < endX; x++)
+        if (style.equals(Style.FILL)) { //Draw a filled in line starting and stopping at specified coordinates
+            int start = slope > 0 ? startX : endX;
+            int end = slope > 0 ? endX : startX;
+            if (slope < 0) {
+
+            }
+
+            for (int x = start ; x < end; x++)
                 for (int y = getLinearY(x); y < getLinearY(x) + getStrokeWidth(); y++)
                     picture.getPixel(x, y).setColor(color);
+        }
         else if (style.equals(Style.STROKE)) ;
         else if (style.equals(Style.FILL_AND_STROKE)) ;
     }

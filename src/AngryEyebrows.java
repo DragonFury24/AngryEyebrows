@@ -9,7 +9,8 @@ public class AngryEyebrows {
         for (int i = 338; i <= 347; i++)
             painter.setPixelColor(i, 273);
 
-        painter.drawLine(200, 200, 450, 450);
+        painter.setStrokeWidth(50);
+        painter.drawLine(200, 450, 450, 200);
         picture.explore();         //allows to search color by pixel
 
     }
