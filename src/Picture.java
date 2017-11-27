@@ -21,7 +21,7 @@ public class Picture extends SimplePicture {
      * Constructor that takes no arguments
      */
     public Picture() {
-      
+
       /* not needed but use it to show students the implicit call to super()
       * child constructors always call a parent constructor 
       */
@@ -77,8 +77,8 @@ public class Picture extends SimplePicture {
      */
     public String toString() {
         String output = "Picture, filename " + getFileName() +
-                " height " + getHeight()
-                + " width " + getWidth();
+                        " height "           + getHeight()
+                                             + " width "     + getWidth();
         return output;
 
     }
@@ -90,8 +90,8 @@ public class Picture extends SimplePicture {
      * @return the picture object
      */
     public static Picture pickAndShow() {
-        String fileName = FileChooser.pickAFile();
-        Picture picture = new Picture(fileName);
+        String  fileName = FileChooser.pickAFile();
+        Picture picture  = new Picture(fileName);
         picture.show();
         return picture;
     }
@@ -133,12 +133,12 @@ public class Picture extends SimplePicture {
      */
     public void negate() {
         Pixel[] pixelArray = this.getPixels();
-        int red, green, blue;
+        int     red,                           green, blue;
 
         for (Pixel pixelObj : pixelArray) {
-            red = pixelObj.getRed();
+            red   = pixelObj.getRed();
             green = pixelObj.getGreen();
-            blue = pixelObj.getBlue();
+            blue  = pixelObj.getBlue();
             pixelObj.setColor(new Color(255 - red, 255 - green, 255 - blue));
         }
     }
@@ -147,9 +147,9 @@ public class Picture extends SimplePicture {
      * Method to flip a picture
      */
     public Picture flip() {
-        Pixel currPixel = null;
-        Pixel targetPixel = null;
-        Picture target =
+        Pixel   currPixel   = null;
+        Pixel   targetPixel = null;
+        Picture target      =
                 new Picture(this.getWidth(), this.getHeight());
 
         for (int srcX = 0, trgX = getWidth() - 1;
@@ -160,7 +160,7 @@ public class Picture extends SimplePicture {
                  srcY++, trgY++) {
 
                 // get the current pixel
-                currPixel = this.getPixel(srcX, srcY);
+                currPixel   = this.getPixel(srcX, srcY);
                 targetPixel = target.getPixel(trgX, trgY);
 
                 // copy the color of currPixel into target
@@ -175,8 +175,8 @@ public class Picture extends SimplePicture {
      */
     public void decreaseRed() {
 
-        Pixel pixel = null; // the current pixel
-        int redValue = 0;       // the amount of red
+        Pixel pixel    = null; // the current pixel
+        int   redValue = 0;    // the amount of red
 
         // get the array of pixels for this picture object
         Pixel[] pixels = this.getPixels();
@@ -207,8 +207,8 @@ public class Picture extends SimplePicture {
     public void decreaseRed(double amount) {
 
         Pixel[] pixels = this.getPixels();
-        Pixel p = null;
-        int value = 0;
+        Pixel   p      = null;
+        int     value  = 0;
 
         // loop through all the pixels
         for (int i = 0; i < pixels.length; i++) {
@@ -233,19 +233,19 @@ public class Picture extends SimplePicture {
     public void compose(Picture target, int targetX, int targetY) {
 
         Pixel currPixel = null;
-        Pixel newPixel = null;
+        Pixel newPixel  = null;
 
         // loop through the columns
         for (int srcX = 0, trgX = targetX; srcX < this.getWidth();
-             srcX++, trgX++) {
+        srcX++, trgX++) {
 
             // loop through the rows
             for (int srcY = 0, trgY = targetY; srcY < this.getHeight();
-                 srcY++, trgY++) {
+            srcY++, trgY++) {
 
                 // get the current pixel
                 currPixel = this.getPixel(srcX, srcY);
-            
+
             /* copy the color of currPixel into target,
             * but only if it'll fit.
             */
@@ -266,19 +266,19 @@ public class Picture extends SimplePicture {
      */
     public Picture scale(double factor) {
 
-        Pixel sourcePixel, targetPixel;
-        Picture canvas = new Picture(
-                (int) (factor * this.getWidth()) + 1,
-                (int) (factor * this.getHeight()) + 1);
+        Pixel   sourcePixel,               targetPixel;
+        Picture canvas      = new Picture(
+                (int) (factor * this.getWidth() ) + 1,
+                (int) (factor * this.getHeight()) + 1 );
         // loop through the columns
         for (double sourceX = 0, targetX = 0;
              sourceX < this.getWidth();
-             sourceX += (1 / factor), targetX++) {
+        sourceX += (1 / factor), targetX++) {
 
             // loop through the rows
             for (double sourceY = 0, targetY = 0;
                  sourceY < this.getHeight();
-                 sourceY += (1 / factor), targetY++) {
+            sourceY += (1 / factor), targetY++) {
 
                 sourcePixel = this.getPixel((int) sourceX, (int) sourceY);
                 targetPixel = canvas.getPixel((int) targetX, (int) targetY);
@@ -299,24 +299,24 @@ public class Picture extends SimplePicture {
      * @param targetY   target Y position to start at
      */
     public void chromakey(Picture target, Color bgColor, int threshold,
-                          int targetX, int targetY) {
+                          int     targetX, int  targetY                ) {
 
         Pixel currPixel = null;
-        Pixel newPixel = null;
+        Pixel newPixel  = null;
 
         // loop through the columns
         for (int srcX = 0, trgX = targetX;
              srcX < getWidth() && trgX < target.getWidth();
-             srcX++, trgX++) {
+        srcX++, trgX++) {
 
             // loop through the rows
             for (int srcY = 0, trgY = targetY;
                  srcY < getHeight() && trgY < target.getHeight();
-                 srcY++, trgY++) {
+            srcY++, trgY++) {
 
                 // get the current pixel
                 currPixel = this.getPixel(srcX, srcY);
-            
+
             /* if the color at the current pixel is within threshold of
             * the input color, then don't copy the pixel
             */
@@ -335,24 +335,24 @@ public class Picture extends SimplePicture {
      * @param targetY target Y position to start at
      */
     public void blueScreen(Picture target,
-                           int targetX, int targetY) {
+                           int     targetX, int targetY) {
 
         Pixel currPixel = null;
-        Pixel newPixel = null;
+        Pixel newPixel  = null;
 
         // loop through the columns
         for (int srcX = 0, trgX = targetX;
              srcX < getWidth() && trgX < target.getWidth();
-             srcX++, trgX++) {
+        srcX++, trgX++) {
 
             // loop through the rows
             for (int srcY = 0, trgY = targetY;
                  srcY < getHeight() && trgY < target.getHeight();
-                 srcY++, trgY++) {
+            srcY++, trgY++) {
 
                 // get the current pixel
                 currPixel = this.getPixel(srcX, srcY);
-            
+
             /* if the color at the current pixel mostly blue (blue value is
             * greater than red and green combined), then don't copy pixel
             */
@@ -368,11 +368,11 @@ public class Picture extends SimplePicture {
      */
     public void grayscaleWithLuminance() {
         Pixel[] pixelArray = this.getPixels();
-        Pixel pixel = null;
-        int luminance = 0;
-        double redValue = 0;
-        double greenValue = 0;
-        double blueValue = 0;
+        Pixel   pixel      = null;
+        int     luminance  = 0;
+        double  redValue   = 0;
+        double  greenValue = 0;
+        double  blueValue  = 0;
 
         // loop through all the pixels
         for (int i = 0; i < pixelArray.length; i++) {
@@ -380,9 +380,9 @@ public class Picture extends SimplePicture {
             pixel = pixelArray[i];
 
             // get the corrected red, green, and blue values
-            redValue = pixel.getRed() * 0.299;
+            redValue   = pixel.getRed()   * 0.299;
             greenValue = pixel.getGreen() * 0.587;
-            blueValue = pixel.getBlue() * 0.114;
+            blueValue  = pixel.getBlue()  * 0.114;
 
             // compute the intensity of the pixel (average value)
             luminance = (int) (redValue + greenValue + blueValue);
@@ -407,13 +407,13 @@ public class Picture extends SimplePicture {
 
         // declare pixels
         Pixel currPixel = null;
-        Pixel retPixel = null;
+        Pixel retPixel  = null;
 
         // loop through the pixels
         for (int x = 0; x < this.getWidth(); x++) {
             for (int y = 0; y < this.getHeight(); y++) {
                 currPixel = this.getPixel(x, y);
-                retPixel = retPict.getPixel(x, y);
+                retPixel  = retPict.getPixel(x, y);
                 retPixel.setColor(currPixel.getMostCommonColorInRange(dist));
             }
         }

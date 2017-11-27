@@ -4,18 +4,18 @@ public class Paint {
 
     private Picture picture;
 
-    private Color color = Color.BLACK;
+    private Color   color       = Color.BLACK;
 
-    private int strokeWidth = 1;
-    private int textSize = 1;
+    private int     strokeWidth = 1;
+    private int     textSize    = 1;
 
     /*
     Calculations for drawLine and other methods involving linear equations
      */
-    private int slope;
-    private int yIntercept;
-    private int tangentSlope;
-    private int tangentYIntercept;
+    private double slope;
+    private double yIntercept;
+    private int    tangentSlope;
+    private int    tangentYIntercept;
 
     public enum Style {
         FILL,
@@ -34,32 +34,24 @@ public class Paint {
     }
 
     public void drawColor(Color c) {
-        for (int row = 0; row <= picture.getHeight(); row++) {
-            for (int col = 0; col <= picture.getWidth(); col++) {
+        for (int row = 0; row <= picture.getHeight(); row++)
+            for (int col = 0; col <= picture.getWidth(); col++)
                 picture.getPixel(row, col).setColor(c);
-            }
-        }
     }
 
     public void drawLine(int startX, int startY, int endX, int endY) {
-        slope = (endY - startY) / (endX - startX);
-        yIntercept = startY - (startX * slope);
-        tangentSlope = -1 / slope;
-        tangentYIntercept = startY - (startX * tangentSlope);
+        slope      = ((double)endY - startY) / ((double)endX - startX);
+        yIntercept = startY                  - (startX       * slope );
+//        tangentSlope = -1 / slope;
+//        tangentYIntercept = startY - (startX * tangentSlope);
 
         if (style.equals(Style.FILL)) { //Draw a filled in line starting and stopping at specified coordinates
-            int start = slope > 0 ? startX : endX;
-            int end = slope > 0 ? endX : startX;
-            if (slope < 0) {
-
-            }
-
-            for (int x = start ; x < end; x++)
+            for (int x = startX ; x < endX; x++)
                 for (int y = getLinearY(x); y < getLinearY(x) + getStrokeWidth(); y++)
                     picture.getPixel(x, y).setColor(color);
         }
-        else if (style.equals(Style.STROKE)) ;
-        else if (style.equals(Style.FILL_AND_STROKE)) ;
+        else if (style.equals(Style.STROKE         ));
+        else if (style.equals(Style.FILL_AND_STROKE));
     }
 
     public void drawOval(int left, int top, int right, int bottom) {
@@ -71,11 +63,11 @@ public class Paint {
     }
 
     public void drawRect(int left, int top, int right, int bottom) {
-        if (style.equals(Style.FILL))
-            for (int row = top; row <= bottom; row++)
-                for (int col = left; col <= right; col++)
-                    picture.getPixel(row, col).setColor(color);
-        else if (style.equals(Style.STROKE)) ;
+        if      (style.equals(Style.FILL  ))
+            for (int row = top; row <= bottom;row++)
+            for (int col = left; col <= right;col++)
+            picture.getPixel(row, col).setColor(color);
+        else if (style.equals(Style.STROKE));
     }
 
     public int getTextSize() {
@@ -119,7 +111,7 @@ public class Paint {
     }
 
     private int getLinearY(int x) {
-        return x * slope + yIntercept;
+        return (int) (x * slope + yIntercept);
     }
 
     private int getTangentY(int x) {
@@ -129,7 +121,6 @@ public class Paint {
     private int getCircularY(int x, int radius, String sign) {
         int y = (int) Math.sqrt(Math.pow(radius, 2) - Math.pow(x, 2));
 
-        return sign.toLowerCase().startsWith("pos") ? y :
-                sign.toLowerCase().startsWith("neg") ? -y : -1;
+        return sign.toLowerCase().startsWith("pos") ? y : sign.toLowerCase().startsWith("neg") ? -y : -1;
     }
 }
