@@ -4,10 +4,10 @@ public class Paint {
 
     private Picture picture;
 
-    private Color   color       = Color.BLACK;
+    private Color color = Color.BLACK;
 
-    private int     strokeWidth = 1;
-    private int     textSize    = 1;
+    private int strokeWidth = 1;
+    private int textSize    = 1;
 
     /*
     Calculations for drawLine and other methods involving linear equations
@@ -40,18 +40,19 @@ public class Paint {
     }
 
     public void drawLine(int startX, int startY, int endX, int endY) {
-        slope      = ((double)endY - startY) / ((double)endX - startX);
-        yIntercept = startY                  - (startX       * slope );
+        slope = ((double) endY - startY) / ((double) endX - startX);
+        yIntercept = startY - (startX * slope);
 //        tangentSlope = -1 / slope;
 //        tangentYIntercept = startY - (startX * tangentSlope);
 
         if (style.equals(Style.FILL)) { //Draw a filled in line starting and stopping at specified coordinates
-            for (int x = startX ; x < endX; x++)
+            for (int x = startX; x < endX; x++)
                 for (int y = getLinearY(x); y < getLinearY(x) + getStrokeWidth(); y++)
                     picture.getPixel(x, y).setColor(color);
-        }
-        else if (style.equals(Style.STROKE         ));
-        else if (style.equals(Style.FILL_AND_STROKE));
+        } else if (style.equals(Style.STROKE))
+            ;
+        else if (style.equals(Style.FILL_AND_STROKE))
+            ;
     }
 
     public void drawOval(int left, int top, int right, int bottom) {
@@ -63,11 +64,12 @@ public class Paint {
     }
 
     public void drawRect(int left, int top, int right, int bottom) {
-        if      (style.equals(Style.FILL  ))
-            for (int row = top; row <= bottom;row++)
-            for (int col = left; col <= right;col++)
-            picture.getPixel(row, col).setColor(color);
-        else if (style.equals(Style.STROKE));
+        if (style.equals(Style.FILL))
+            for (int row = top; row <= bottom; row++)
+                for (int col = left; col <= right; col++)
+                    picture.getPixel(row, col).setColor(color);
+        else if (style.equals(Style.STROKE))
+            ;
     }
 
     public int getTextSize() {
